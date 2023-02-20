@@ -1,6 +1,6 @@
-# HOMEWORK_2
+# HOMEWORK2
 
-Homework_1 for Introduction to programming course @ Faculty of Mathematics and Informatics, Sofia University
+Homework2 for Introduction to programming course @ Faculty of Mathematics and Informatics, Sofia University
 
 ### Задача 1
 

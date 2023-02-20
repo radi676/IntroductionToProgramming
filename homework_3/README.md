@@ -1,6 +1,6 @@
-# HOMEWORK_3
+# HOMEWORK3
 
-Homework_3 for Introduction to programming course @ Faculty of Mathematics and Informatics, Sofia University
+Homework3 for Introduction to programming course @ Faculty of Mathematics and Informatics, Sofia University
 
 ###Задача 1
 Да се напише функция на C++, която приема като параметър символен низ S, с дължина не повече от 1024 символа и символ C. Функцията да криптира S, като за целта, C има ролята на ключ и всеки символ от S се криптира чрез операцията побитово изключващо или със символа C. Да се напише функция main(), която прочита от стандартния вход символ (ключ) и един символен низ. Програмата да отпечата на стандартния изход низовете криптирани с така написаната функция, според подадения ключ.ю
