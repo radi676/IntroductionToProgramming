@@ -29,12 +29,12 @@ bool isValidInput(int* arr, int rowLen)
 		}
 		sum += current;
 	}
-	return sum % rowLen == 0;//тогава сме запълнили ред
+	return sum % rowLen == 0;
 }
 
-void resize(int*& arr, int N) // просто разширяваш масива за да поставяш нови, щото е пълен вече
+void resize(int*& arr, int N) 
 {
-	int* newArr = new int[N * RESIZE_FACTOR];//ппц е 1.6 оптималното
+	int* newArr = new int[N * RESIZE_FACTOR];
 
 	for (int i = 0; i < N; i++)
 	{
@@ -55,14 +55,13 @@ void makeInBin(int* bin, int num)
 
 void addToDec(int* dec, int* bin, int currentBinsRemaining)
 {
-	for (int i = 0; i < currentBinsRemaining / TO_DEC_SIZE; i++) //записваме толкова числа, колкото тройни позиции можем да отделим
+	for (int i = 0; i < currentBinsRemaining / TO_DEC_SIZE; i++) 
 	{
-		dec[i] = bin[i * 3] * 4 + bin[i * 3 + 1] * 2 + bin[i * 3 + 2];//понеже са 3 бита, затова са три събираеми и във всяка клетка се извърпва операция
+		dec[i] = bin[i * 3] * 4 + bin[i * 3 + 1] * 2 + bin[i * 3 + 2];
 	}
-	//горе сме взели толкова 3ки, колкото можем да отделим, но има и остатък
-	for (int i = 0; i < currentBinsRemaining % TO_DEC_SIZE; i++)//или 0 или 1 или 2 може да е остатъка
+	for (int i = 0; i < currentBinsRemaining % TO_DEC_SIZE; i++)
 	{
-		bin[i] = bin[i + (currentBinsRemaining / TO_DEC_SIZE) * TO_DEC_SIZE];//дали остатъка е на 0, 1 или 2 позиция в клетката
+		bin[i] = bin[i + (currentBinsRemaining / TO_DEC_SIZE) * TO_DEC_SIZE];
 	}
 }
 
@@ -86,35 +85,34 @@ bool checkConsequativeZeros(int* arr, int len)
 int* inputArray()
 {
 	int capacity = INITIAL_CAPACITY;
-	int* arr = new int[capacity];//този масив пази числата за принтиране , от 0 до 7
+	int* arr = new int[capacity];
 
 	int currentIndex = 0;
 
-	int currentNum;//текъщоуо число
+	int currentNum;
 
-	int currentBins[MAX_SIZE_BINARY * 2];//като прочетем число директно го превръщаме 
-	//после вадим числата от тоя масив и ги представяме по тройки в арр масива пъвривя
-	int currentBinsRemaining = 0;//отговаря за останалите битове, които не сме изкарали в тройка
+	int currentBins[MAX_SIZE_BINARY * 2];
+	int currentBinsRemaining = 0;
 
 	while (true)
 	{
 		std::cin >> currentNum;
-		makeInBin(currentBins + currentBinsRemaining, currentNum);//указателят ще сочи точно там, където тр да почнем да записваме следващото число 
-		currentBinsRemaining += MAX_SIZE_BINARY;//добавяме още 8 бита, щото сме добавили току що числото
+		makeInBin(currentBins + currentBinsRemaining, currentNum);
+		currentBinsRemaining += MAX_SIZE_BINARY;
 
-		if (currentIndex + currentBinsRemaining / TO_DEC_SIZE >= capacity)//ако се напълни, го рисзйзва
+		if (currentIndex + currentBinsRemaining / TO_DEC_SIZE >= capacity)
 		{
 			resize(arr, currentIndex);
-			capacity = currentIndex * RESIZE_FACTOR;//тука реално го увеличаваме
+			capacity = currentIndex * RESIZE_FACTOR;
 		}
 
 		addToDec(arr + currentIndex, currentBins, currentBinsRemaining);
 
-		int oldIndex = currentIndex - 1 < 0 ? 0 : currentIndex - 1;//колко е било преди да сме го адд ту декнали
-		currentIndex += currentBinsRemaining / TO_DEC_SIZE;//добавям му на колко позиции ще пишем след последното
+		int oldIndex = currentIndex - 1 < 0 ? 0 : currentIndex - 1;
+		currentIndex += currentBinsRemaining / TO_DEC_SIZE;
 		currentBinsRemaining %= TO_DEC_SIZE;
 
-		if (checkConsequativeZeros(arr + oldIndex, currentIndex - oldIndex))//ако има две последователни нули
+		if (checkConsequativeZeros(arr + oldIndex, currentIndex - oldIndex))
 		{
 			break;
 		}
@@ -157,7 +155,7 @@ void print(int* arr, int rowLength)
 		current--;
 		row++;
 
-		if (row == rowLength)//минава на нов ред
+		if (row == rowLength)
 		{
 			std::cout << std::endl;
 			row = 0;
