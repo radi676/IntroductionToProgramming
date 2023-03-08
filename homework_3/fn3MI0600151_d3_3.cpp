@@ -88,7 +88,7 @@ void printWithLeadingZeros(int num, int CELLS)
 		numLength++;
 	}
 
-	for (int i = 0; i < CELLS - numLength; i++)//ако се поддаде числото 23 да е в 4 клетки, ще му сложи 2 нули отпред
+	for (int i = 0; i < CELLS - numLength; i++
 	{
 		std::cout << "0";
 	}
@@ -103,9 +103,8 @@ void printRushHours(const int* arrivals, const int* departures, int N)
 {
 	int maxRunwaysRequired = 0;
 	int currentRunwaysRequired = 0;
-	//прави се с цел да не се повтаря обхождането
-	int** rushHourStarts = initializeMatrix(N + 1);//пишем интервала тука//половината интервал е тук
-	int** rushHourEnds = initializeMatrix(N + 1);//другата половина е тук
+	int** rushHourStarts = initializeMatrix(N + 1);
+	int** rushHourEnds = initializeMatrix(N + 1);
 
 	int arriveIndex = 0;
 	int departIndex = 0;
@@ -115,10 +114,9 @@ void printRushHours(const int* arrivals, const int* departures, int N)
 	while (arriveIndex < N)
 	{
      	currentTime = arrivals[arriveIndex];
-		currentRunwaysRequired++;//самолет каца-> 1
+		currentRunwaysRequired++;
 
 		while (departIndex < N && departures[departIndex] <= currentTime)
-			//тука гледаме колко ще излетят преди тоя горе да пристигне
 		{
 			currentRunwaysRequired--;
 			departIndex++;
@@ -127,7 +125,7 @@ void printRushHours(const int* arrivals, const int* departures, int N)
 		if (currentRunwaysRequired >= maxRunwaysRequired)
 		{
 			maxRunwaysRequired = currentRunwaysRequired;
-			int index = ++rushHourStarts[maxRunwaysRequired][0]; //бройката на интерваи?
+			int index = ++rushHourStarts[maxRunwaysRequired][0]; 
 
 			rushHourStarts[maxRunwaysRequired][index] = arrivals[arriveIndex];
 			rushHourEnds[maxRunwaysRequired][index] = departures[departIndex];
@@ -138,7 +136,7 @@ void printRushHours(const int* arrivals, const int* departures, int N)
 
 	std::cout << maxRunwaysRequired << std::endl;
 
-	for (int i = 1; i < rushHourStarts[maxRunwaysRequired][0] + 1; i++)//на 0лата е бройка на интервалите
+	for (int i = 1; i < rushHourStarts[maxRunwaysRequired][0] + 1; i++)
 	{
 		printWithLeadingZeros(rushHourStarts[maxRunwaysRequired][i], HOUR_LENGTH);
 		std::cout << "-";
