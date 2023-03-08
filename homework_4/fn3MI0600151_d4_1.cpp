@@ -102,7 +102,7 @@ bool isValidDouble(const char* string)
 	{
 		if (string[indx] == POINT || string[indx] == COMMA)
 		{
-			if (foundPointOrComma)//ако има повече от една точка или минус
+			if (foundPointOrComma)
 			{
 				return false;
 			}
