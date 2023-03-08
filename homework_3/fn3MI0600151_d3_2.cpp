@@ -48,7 +48,7 @@ int getNumLength(int num)
 	return numLength;
 }
 
-char* toString(int num)//parse from int to String
+char* toString(int num)
 {
 	int numLength = getNumLength(num);
 	char* result = new char[numLength + 1];
@@ -177,7 +177,7 @@ int main()
 		return 0;
 	}
 
-	char** charNumArr = new char* [length];//така правим масив от стрингове
+	char** charNumArr = new char* [length];
 	for (int i = 0; i < length; i++)
 	{
 		charNumArr[i] = toString(arrayNumbers[i]);
